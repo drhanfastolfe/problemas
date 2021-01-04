@@ -6,47 +6,38 @@ public class constanteKaprekar
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        int nNums, num, resultado, numAsc, numDes, i, k;
+        int nNums, resultado, numAsc, numDes, k;
         
-        System.out.println("Introduce el número de casos de prueba:");
         nNums = sc.nextInt();
         
-        int[] iteraciones = new int[nNums];
-        int[] nums = new int[nNums];
-
-        for(i = 0; i < nNums; i++)
+        while(nNums > 0)
         {
-            do
-            {
-                System.out.println("Introduce el caso de prueba " + (i + 1) + ":");
-                num = sc.nextInt();
-            } while (!(num > 0) || digitosIguales(num) || nDigitos(num) > 4);
-            
-            nums[i] = num;
-        }
-
-        for(i = 0; i < nums.length; i++)
-        {
+            resultado = sc.nextInt();
+        
             k = 0;
-            resultado = nums[i];
-            while (resultado != 6174)
+
+            if(digitosIguales(resultado) || resultado == 0)
             {
-                int[] arrNumAsc = ordenaDigitosAscendente(resultado);
-                numAsc = arrNumAsc[0] * 1000 + arrNumAsc[1] * 100 + arrNumAsc[2] * 10 + arrNumAsc[3];
-
-                int[] arrNumDes = invierteArray(arrNumAsc);
-                numDes = arrNumDes[0] * 1000 + arrNumDes[1] * 100 + arrNumDes[2] * 10 + arrNumDes[3];
-
-                resultado = numDes - numAsc;
-
-                k++; 
+                System.out.println(8);
             }
-            iteraciones[i] = k;
-        }
+            else
+            {
 
-        for(i = 0; i < iteraciones.length; i++)
-        {
-            System.out.println(iteraciones[i]);
+                while (resultado != 6174)
+                {
+                    int[] arrNumAsc = ordenaDigitosAscendente(resultado);
+                    numAsc = arrNumAsc[0] * 1000 + arrNumAsc[1] * 100 + arrNumAsc[2] * 10 + arrNumAsc[3];
+    
+                    int[] arrNumDes = invierteArray(arrNumAsc);
+                    numDes = arrNumDes[0] * 1000 + arrNumDes[1] * 100 + arrNumDes[2] * 10 + arrNumDes[3];
+    
+                    resultado = numDes - numAsc;
+    
+                    k++; 
+                }
+                System.out.println(k);
+            }
+            nNums--;
         }
     }
 
@@ -74,11 +65,6 @@ public class constanteKaprekar
         }
 
         return iguales;
-    }
-
-    public static int nDigitos(int n)
-    {
-        return String.valueOf(n).length();
     }
 
     public static int[] ordenaDigitosAscendente(int n)
