@@ -39,6 +39,7 @@ public class constanteKaprekar
             }
             nNums--;
         }
+        sc.close();
     }
 
     public static boolean digitosIguales(int n)
